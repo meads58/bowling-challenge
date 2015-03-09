@@ -1,21 +1,42 @@
-var Frame = function() {
+var Frame = function(frame) {
   this.rollOne = 0;
   this.rollTwo = 0;
   this.bonusRoll = 0;
-  this.frameNumber = 1;
+  this.rollOneIndex = null
+  this.rollTwoIndex = null
+  this.rollBonusIndex = null
 };
 
-Frame.prototype.nextFrame = function() {
-  return this.frameNumber += 1
-  };
-
 Frame.prototype.setRollOneScore = function(roll) {
-  if (roll.getPinsHit() < 10 ){
-    return this.rollOne = roll.getPinsHit()
+  if(roll < 11){
+    this.rollOne = roll;
   }else {
-    return this.rollOne = 0};
+    0
+  };
 };
 
 Frame.prototype.getRollOneScore = function() {
   return this.rollOne
 };
+
+Frame.prototype.setRollTwoScore = function(roll) {
+    return this.rollTwo = roll.getPinsHit()
+};
+
+Frame.prototype.getRollTwoScore = function() {
+  return this.rollTwo
+};
+
+Frame.prototype.setRollOneIndex = function(index) {
+    return this.rollOneIndex = index
+};
+
+Frame.prototype.setRollTwoIndex = function(index) {
+    return this.rollTwoIndex = index
+};
+
+Frame.prototype.setRollBonusIndex = function(index) {
+    return this.rollBonusIndex = index
+};
+
+

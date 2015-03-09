@@ -18,6 +18,7 @@ describe('Frame', function() {
       });
 
       it('Will not take a roll score of greater than 10', function() {
+        spyOn(roll, "getPinsHit").and.returnValue(11)
         frame.setRollOneScore(roll);
         expect(frame.rollOne).toEqual(0);
       });
@@ -30,6 +31,12 @@ describe('Frame', function() {
         expect(frame.rollTwo).toEqual(0);
       });
 
+      it('Cannot have a score great than 10', function() {
+        spyOn(roll, "getPinsHit").and.returnValue(11)
+        frame.setRollTwoScore(roll);
+        expect(frame.rollTwo).toEqual(0);
+      });
+
     });
 
     it('Starts wit a bonusRoll score of 0', function() {
@@ -37,13 +44,6 @@ describe('Frame', function() {
     });
 
 
-    it('Knows to start on frame 1 ', function(){
-      expect(frame.frameNumber).toEqual(1);
-    });
 
-    it('When on frame 2 knows that it is in frame 2', function() {
-      frame.nextFrame();
-      expect(frame.frameNumber).toEqual(2)
-    });
 
 });
