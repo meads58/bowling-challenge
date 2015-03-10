@@ -19,7 +19,6 @@ describe('tenPin', function() {
     })
   })
 
-
   describe('strike',function() {
 
     it('when first roll equals 10', function(){
@@ -44,7 +43,6 @@ describe('tenPin', function() {
 
     it('sets the first roll index to the current frame', function() {
 
-
     });
 
     it('scores the second roll with 2', function() {
@@ -68,6 +66,66 @@ describe('tenPin', function() {
     })
 
   });
+
+  describe('create the frames.', function() {
+
+    it('Can create 10 frame objects in an array', function() {
+      tenP.createGame(10)
+      expect(tenP.frames.length).toEqual(10)
+    })
+
+  })
+
+  describe('set strike.', function() {
+
+    beforeEach(function() {
+      tenP.createGame(10)
+    })
+
+    it('calls the setScoreOne function', function(){
+      spyOn(tenP, "setScoreOne")
+      tenP.setStrike(1)
+      expect(tenP.setScoreOne).toHaveBeenCalled()
+    })
+
+    it('Increases the frameScored by one', function() {
+      tenP.setStrike(1)
+      expect(tenP.framesScored).toEqual(1)
+    })
+
+    it('Assigns the current frames roll one index to the current frame', function() {
+      tenP.setStrike(1)
+      expect(tenP.frames[0].getRollOneIndex()).toEqual(0)
+    })
+
+
+    it("Assigns the current frames roll two index to the next frame's index", function() {
+      tenP.setStrike(1)
+      expect(tenP.frames[0].getRollTwoIndex()).toEqual(1)
+    })
+
+
+    it("Assigns the current frames roll bonus index to the next frame's index", function() {
+      tenP.setStrike(1)
+      expect(tenP.frames[0].getRollBonusIndex()).toEqual(1)
+    })
+  })
+
+  describe('updating frame scores.', function(){
+
+     beforeEach(function() {
+      tenP.createGame(10)
+    })
+
+    it('Will stop updating when the roll one index is null. In this example at frame 3', function() {
+      tenP.setStrike(1)
+      tenP.lastRoll = 8
+      tenP.setScoreOne(2)
+      tenP.framesScored = 2
+      tenP.updateFrames()
+      expect(tenP.frames[0].getRollTwoScore()).toEqual(8)
+    })
+  })
 
 });
 

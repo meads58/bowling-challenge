@@ -35,7 +35,7 @@ tenPin.prototype.firstRollStrike = function(){
 };
 
 tenPin.prototype.setStrike = function(frame) {
-  tenPin.setScoreOne(frame)
+  this.setScoreOne(frame)
   this.frames[frame - 1].setRollOneIndex(frame - 1)
   this.frames[frame - 1].setRollTwoIndex(frame)
   this.frames[frame - 1].setRollBonusIndex(frame)
@@ -43,14 +43,15 @@ tenPin.prototype.setStrike = function(frame) {
 }
 
 tenPin.prototype.setScoreOne = function(frame) {
-  console.log(this.frames[frame - 1])
   this.frames[frame - 1].setRollOneScore(this.lastRoll)
   this.frames[frame - 1].setRollOneIndex(frame - 1)
 }
 
 tenPin.prototype.updateFrames = function() {
-  for (i = 0; i < framesScored; i++) {
+  console.log(this.frames[0].getRollTwoIndex())
+  for (i = 0; i < this.framesScored; i++) {
+    console.log(i)
     if (this.frames[i].rollOneIndex = null) {break}
-    this.frames[i].rollTwo = this.frames[this.frames[i].rollTwoIndex]
+    this.frames[i].setRollTwoScore(this.frames[this.frames[i].getRollTwoIndex()].getRollOneScore())
   }
 }

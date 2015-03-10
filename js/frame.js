@@ -20,7 +20,7 @@ Frame.prototype.getRollOneScore = function() {
 };
 
 Frame.prototype.setRollTwoScore = function(roll) {
-    return this.rollTwo = roll.getPinsHit()
+    return this.rollTwo = roll
 };
 
 Frame.prototype.getRollTwoScore = function() {
@@ -39,4 +39,15 @@ Frame.prototype.setRollBonusIndex = function(index) {
     return this.rollBonusIndex = index
 };
 
+Frame.prototype.getRollOneIndex = function() {
+  return this.rollOneIndex
+}
+
+Frame.prototype.getRollTwoIndex = function() {
+  return this.rollTwoIndex
+}
+
+Frame.prototype.getRollBonusIndex = function() {
+  return this.rollBonusIndex
+}
 
