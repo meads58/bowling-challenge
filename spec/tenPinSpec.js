@@ -17,6 +17,11 @@ describe('tenPin', function() {
       spyOn(roll, "getPinsHit").and.returnValue(4)
       expect(tenP.setLastRoll(roll)).toEqual(4)
     })
+
+    it('knows that when on frame 1 that the current frame is 1', function() {
+      // tenP.setCurrentFrame(1)
+      // expect.(getCurrentFrame).toEqual(1)
+    })
   })
 
   describe('strike',function() {
@@ -118,12 +123,14 @@ describe('tenPin', function() {
     })
 
     it('Will stop updating when the roll one index is null. In this example at frame 3', function() {
+      frame = new Frame;
       tenP.setStrike(1)
       tenP.lastRoll = 8
       tenP.setScoreOne(2)
       tenP.framesScored = 2
+      spyOn(tenP.frames[0], "setRollTwoScore")
       tenP.updateFrames()
-      expect(tenP.frames[0].getRollTwoScore()).toEqual(8)
+      expect(tenP.frames[0].setRollTwoScore()).toHaveBeenCalled()
     })
   })
 

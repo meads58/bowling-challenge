@@ -48,9 +48,7 @@ tenPin.prototype.setScoreOne = function(frame) {
 }
 
 tenPin.prototype.updateFrames = function() {
-  console.log(this.frames[0].getRollTwoIndex())
   for (i = 0; i < this.framesScored; i++) {
-    console.log(i)
     if (this.frames[i].rollOneIndex = null) {break}
     this.frames[i].setRollTwoScore(this.frames[this.frames[i].getRollTwoIndex()].getRollOneScore())
   }
